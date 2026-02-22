@@ -35,8 +35,8 @@ class TodoManager:
         self.tasks.pop(task_id - 1)
 
     def list_tasks(self):
-        for i in self.tasks:
-            print(i.id + 1, ') ', i.title, ' ', i.completed, sep = '')
+        for i in range(len(self.tasks)):
+            print(i + 1, ') ', self.tasks[i].title, ' ', self.tasks[i].completed, sep = '')
 
     def save_to_file(self):
         try:
@@ -76,14 +76,17 @@ def main():
         if choice == '1':
             title = input('Введите название задачи ')
             mas.add_task(title)
+            mas.save_to_file()
         elif choice == '2':
             mas.list_tasks()
         elif choice == '3':
             id = int(input('Введите id задачи, которую нужно завершить '))
             mas.complete_task(id)
+            mas.save_to_file()
         elif choice == '4':
             id = int(input('Введите id задачи, которую нужно удалить '))
             mas.remove_task(id)
+            mas.save_to_file
         elif choice == '5':
             print('Выход...')
             mas.save_to_file()
